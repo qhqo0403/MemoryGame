@@ -140,7 +140,7 @@ const createBorad = (cards) => {
   for (let i = 0; i <= cards.length-1; i++) {
     wrapper.innerHTML += `
     <div class="card_container"  value="${cards[i].name}">
-        <div class="card_back"><img src="images/backcard.GIF" alt="back card" draggable="false"></div>
+        <div class="card_back"><img src="images/backcard.gif" alt="back card" draggable="false"></div>
         <div class="card_front"><img src="images/${cards[i].image}" alt="MARVEL" draggable="false"></div>
     </div>
     `;
