@@ -107,6 +107,8 @@ const playMethod = () => {
             let delay = setTimeout(() =>{
               tempFirst.classList.remove('flip');
               tempSecond.classList.remove('flip');
+              tempFirst.classList.remove('wrong');
+              tempSecond.classList.remove('wrong');
             }, 900);
           }
         }
