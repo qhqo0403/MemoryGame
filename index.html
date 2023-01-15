@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MARVEL CARD GAME</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <h1>MARVEL MEMORY GAME</h1>
+    <div class="bg"></div>
+    <div class="wrapper">
+      <div class="game_state">
+        <div class="level hide"></div>
+        <div class="moves_count hide">Moving Count : <span class="countNum">0</span></div>
+      </div>
+    <div class="card_wrapper"></div>
+    <!--  <button id="stop" class="hide">Stop Game</button> -->
+    </div>
+    <button type="button" class="start">START</button>
+    <div class="result hide">
+      <p class="end_txt">GRATE!</p>
+      <p class="total_count"></p>
+      <div class="btns">
+        <button type="button" class="next">Next Level</button>
+        <button type="button" class="restart">Restart</button>
+      </div>
+    </div>
+    <script src="script/app.js"></script>
+  </body>
+</html>
