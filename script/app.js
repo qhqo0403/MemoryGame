@@ -109,7 +109,7 @@ const hint = (level) => {
     close = 8000;
   } else if ( level === 2) {
     open = 250;
-    close = 4000;
+    close = 4200;
   } else {
     open = 150;
     close = 2600;
