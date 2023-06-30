@@ -10,10 +10,10 @@ const nextBtn = document.querySelector('.next');
 const restartBtn = document.querySelector('.restart');
 
 let card;
-let interval;
+let timer;
 let firstCard = false;
 let secondCard = false;
-let moveCount = 0;
+let timeCount = 0;
 let winCount = 0;
 let level = 1;
 
@@ -36,21 +36,25 @@ const cards = [
   { name: "STRANGE", image: "marvel_08.jpg" }
 ];
 
+const startTimer = () => {
+  timer = setInterval(() => {
+    timeCount++;
+    countNum.innerText = timeCount;
+  }, 1000);
+}
+const resetTimer = () => {
+  clearInterval(timer);
+}
+
+
 const endResult = () => {
   wrapper.classList.add('hide');
   result.style.display = "flex";
   result.classList.remove('hide');
   currentLevel.classList.add('hide');
   currentMoves.classList.add('hide');
-}
+};
 
-const movesCounter = () => {
-  moveCount += 1;
-  console.log(moveCount);
-  countNum.innerText = moveCount;
-  return moveCount;
-}
-;
 const playMethod = () => {
   card = document.querySelectorAll('.card_container');
   let firstCardValue;
@@ -79,7 +83,7 @@ const playMethod = () => {
     }         
     if(winCount === Math.floor(card.length / 2)){
       setTimeout(endResult, 500);
-      totalMoves.innerHTML = `Total moving count : ${moveCount}`;
+      totalMoves.innerHTML = `It took ${timeCount} second!`;
     }
   }
   card.forEach( eachCard => {
@@ -90,7 +94,6 @@ const playMethod = () => {
           firstCard = eachCard;
           firstCardValue = eachCard.getAttribute('value');
         } else {
-          movesCounter();
           secondCard = eachCard;
           secondCardValue = eachCard.getAttribute('value');
           cardCheck();
@@ -127,6 +130,8 @@ const hint = (level) => {
       eachCard.classList.remove('flip');
     }, close);
   });
+
+  setTimeout(startTimer, close);
 }
 
 const createBorad = (cards) => {
@@ -179,5 +184,6 @@ startBtn.addEventListener('click', () => {
 const initializer = () => {
   createBorad(cards);
   winCount = 0;
-  moveCount = 0;
+  timeCount = 0;
+  resetTimer();
 };
