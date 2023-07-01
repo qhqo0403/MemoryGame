@@ -41,7 +41,7 @@ const timeConverter = time => {
     time = `${Math.floor(time / 60)}m ${time % 60}`;
   }
   return `${time}s`;
-}
+};
 
 const startTimer = () => {
   timer = setInterval(() => {
@@ -51,7 +51,7 @@ const startTimer = () => {
 }
 const resetTimer = () => {
   clearInterval(timer);
-}
+};
 
 const endResult = () => {
   wrapper.classList.add('hide');
@@ -67,6 +67,10 @@ const playMethod = () => {
   let secondCardValue;
   
   function cardCheck(){
+    if (firstCard.dataset.index === secondCard.dataset.index) {
+      secondCard = false;
+      return;
+    }
     if (firstCardValue === secondCardValue) {
       firstCard.classList.add('matched');
       secondCard.classList.add('matched');
@@ -86,11 +90,11 @@ const playMethod = () => {
         tempFirst.classList.remove('wrong');
         tempSecond.classList.remove('wrong');
       }, 900);
-    }         
+    };
     if(winCount === Math.floor(card.length / 2)){
       setTimeout(endResult, 500);
       totalMoves.innerHTML = `It took ${timeConverter(timeCount)}!`;
-    }
+    };
   }
   card.forEach( eachCard => {
     eachCard.addEventListener('click', () => {
@@ -108,7 +112,7 @@ const playMethod = () => {
       }
     });
   });
-}
+};
 
 const hint = (level) => {
   card = document.querySelectorAll('.card_container');
@@ -139,7 +143,7 @@ const hint = (level) => {
   });
 
   setTimeout(startTimer, close);
-}
+};
 
 const createBorad = (cards) => {
   cards.sort(() => 0.5 - Math.random()); 
@@ -150,7 +154,7 @@ const createBorad = (cards) => {
   currentLevel.innerText = `Lv.${level}`;
   for (let i = 0; i <= cards.length-1; i++) {
     wrapper.innerHTML += `
-    <div class="card_container"  value="${cards[i].name}">
+    <div class="card_container"  value="${cards[i].name}" data-index=${i}>
         <div class="card_back"><img src="images/backcard.gif" alt="back card" draggable="false"></div>
         <div class="card_front"><img src="images/${cards[i].image}" alt="MARVEL" draggable="false"></div>
     </div>
@@ -159,7 +163,7 @@ const createBorad = (cards) => {
   console.log(level);
   hint(level);
   playMethod();
-}
+};
 
 nextBtn.addEventListener('click', () => {
   level++;
