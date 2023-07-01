@@ -36,16 +36,22 @@ const cards = [
   { name: "STRANGE", image: "marvel_08.jpg" }
 ];
 
+const timeConverter = time => {
+  if (time > 60) {
+    time = `${Math.floor(time / 60)}m ${time % 60}`;
+  }
+  return `${time}s`;
+}
+
 const startTimer = () => {
   timer = setInterval(() => {
     timeCount++;
-    countNum.innerText = timeCount;
+    countNum.innerText = timeConverter(timeCount);
   }, 1000);
 }
 const resetTimer = () => {
   clearInterval(timer);
 }
-
 
 const endResult = () => {
   wrapper.classList.add('hide');
@@ -83,7 +89,7 @@ const playMethod = () => {
     }         
     if(winCount === Math.floor(card.length / 2)){
       setTimeout(endResult, 500);
-      totalMoves.innerHTML = `It took ${timeCount} second!`;
+      totalMoves.innerHTML = `It took ${timeConverter(timeCount)}!`;
     }
   }
   card.forEach( eachCard => {
@@ -93,6 +99,7 @@ const playMethod = () => {
         if (!firstCard) {
           firstCard = eachCard;
           firstCardValue = eachCard.getAttribute('value');
+          console.log(firstCard.dataset.index);
         } else {
           secondCard = eachCard;
           secondCardValue = eachCard.getAttribute('value');
@@ -173,6 +180,7 @@ restartBtn.addEventListener('click', () => {
   result.style.display = 'none';
   wrapper.classList.remove('hide');
   level = 1;
+  countNum.innerText = 0;
   initializer();
 });
 
