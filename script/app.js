@@ -95,7 +95,7 @@ const playMethod = () => {
       setTimeout(endResult, 500);
       totalMoves.innerHTML = `It took ${timeConverter(timeCount)}!`;
     };
-  }
+  };
   card.forEach( eachCard => {
     eachCard.addEventListener('click', () => {
       if(!eachCard.classList.contains('matched')){
@@ -103,7 +103,6 @@ const playMethod = () => {
         if (!firstCard) {
           firstCard = eachCard;
           firstCardValue = eachCard.getAttribute('value');
-          console.log(firstCard.dataset.index);
         } else {
           secondCard = eachCard;
           secondCardValue = eachCard.getAttribute('value');
@@ -154,7 +153,7 @@ const createBorad = (cards) => {
   currentLevel.innerText = `Lv.${level}`;
   for (let i = 0; i <= cards.length-1; i++) {
     wrapper.innerHTML += `
-    <div class="card_container"  value="${cards[i].name}" data-index=${i}>
+    <div class="card_container" value="${cards[i].name}" data-index=${i}>
         <div class="card_back"><img src="images/backcard.gif" alt="back card" draggable="false"></div>
         <div class="card_front"><img src="images/${cards[i].image}" alt="MARVEL" draggable="false"></div>
     </div>
